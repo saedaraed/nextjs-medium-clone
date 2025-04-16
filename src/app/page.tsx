@@ -3,7 +3,7 @@ import BlogList from "@/components/BlogList";
 import { useAuth } from "@/context/AuthContext";
 import { firestore } from "@/lib/firebase";
 import { deleteDoc, doc, Timestamp } from "firebase/firestore";
-import React, { useMemo, useState } from "react";
+import React, {  useState } from "react";
 import CategoryTabs from "@/components/CategoryTabs";
 import RecommendedTopics from "@/components/RecommendedTopics";
 import PopularPosts from "@/components/PopularPosts";

@@ -19,8 +19,8 @@ const popularTags = [
     "Music",
   ];
 const Tags:React.FC=()=>{
-  const[topics , setTopics]=useState<any[]>([])
-  const { blogs, loading, error } = useFetchBlogs();
+  // const[topics , setTopics]=useState<any[]>([])
+  const { blogs } = useFetchBlogs();
 console.log("tags" , blogs)
     return(
         <div
