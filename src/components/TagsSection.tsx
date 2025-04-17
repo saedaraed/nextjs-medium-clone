@@ -1,5 +1,4 @@
 import useFetchBlogs from "@/hook/useFetchBlogs";
-import { useState } from "react";
 
 const popularTags = [
     "Technology",

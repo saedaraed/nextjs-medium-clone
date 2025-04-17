@@ -3,6 +3,7 @@ import { Geist, Inter  } from "next/font/google";
 import { AuthProvider } from "../context/AuthContext";
 import "./globals.css";
 import Navbar from "@/components/Navbar"; 
+import { SavedBlogsProvider } from "@/context/SavedBlogsContext";
 const inter = Inter({
   variable: "--font-inter",
   subsets: ["latin"],
@@ -35,10 +36,11 @@ export default function RootLayout({
       >
         
          <AuthProvider>
+         <SavedBlogsProvider>
          <Navbar />
     
          {children}
-
+         </SavedBlogsProvider>
          </AuthProvider>
       </body>
     </html>

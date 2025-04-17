@@ -1,16 +1,6 @@
 import Link from "next/link";
 import {Blog} from "@/types/types"
-// interface Blog {
-//     id: string;
-//     title: string;
-//     content: string;
-//     createdAt: string;
-//     image: string;
-//     authorname?:string;
-//     category?:string;
-//   }
-  
-  
+
 interface BlogCardProps {
     blog: Blog;
     onDelete: (blogId: string) => void;
@@ -29,7 +19,7 @@ interface BlogCardProps {
     toggleSaved,
     isDropdownOpen,
     toggleDropdown,
-    isLoggedIn, // استقبال حالة المستخدم
+    isLoggedIn,
     
   }) => {
   

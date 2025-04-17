@@ -21,6 +21,7 @@ const BlogList: React.FC<BlogListProps> = ({
   toggleDropdown,
   isLoggedIn,
 }) => {
+  
   return (
     <div className="space-y-6">
       {blogs.map((blog) => (
