@@ -6,17 +6,21 @@ import Cookies from "js-cookie";
 import useFetchBlogs from "@/hook/useFetchBlogs";
 import { firestore } from "@/lib/firebase";
 import { deleteDoc, doc } from "firebase/firestore";
+import { Blog } from "@/types/types";
 
 
 const Stories:React.FC =()=>{
     const params = useParams();
     const username = params.username as string;
     const [isOwner, setIsOwner] = useState<boolean | null>(null); 
-    const { blogs, loading, error } = useFetchBlogs({ authorName: username });
+    const [blogs, setBlogs] = useState<Blog[]>([]);
+
+// كل ما تغيرت fetchedBlogs، خزنيها محلياً
+
+    const { blogs: fetchedBlogs, loading, error } = useFetchBlogs({ authorName: username });
   const cookieUser = Cookies.get("user"); 
   const parsedUser = cookieUser ? JSON.parse(cookieUser) : null;
-  console.log('usernamelk' ,username)
-   console.log("blllll" , blogs)
+
    useEffect(() => {
     if (!parsedUser || parsedUser.displayName !== username) {
       setIsOwner(false);
@@ -25,16 +29,17 @@ const Stories:React.FC =()=>{
     }
   }, [parsedUser, username]);
 
-  // ⛔️ إظهار 404 إذا لم يكن هو المالك
   if (isOwner === false) {
     notFound();
   }
-
+  useEffect(() => {
+    setBlogs(fetchedBlogs);
+  }, [fetchedBlogs]);
     const handleDeleteBlog = async (blogId: string) => {
       try {
         const blogRef = doc(firestore, "blogs", blogId);
         await deleteDoc(blogRef);
-        // setBlogs((prevBlogs) => prevBlogs.filter((blog) => blog.id !== blogId));
+        setBlogs((prevBlogs) => prevBlogs.filter((blog) => blog.id !== blogId));
         console.log("Blog deleted successfully!");
       } catch (error) {
         console.error("Error deleting blog:", error);

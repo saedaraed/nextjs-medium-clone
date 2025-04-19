@@ -3,12 +3,12 @@ import { deleteDoc, doc } from "firebase/firestore";
 import { useParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import { firestore } from "../../../lib/firebase";
-import Cookies from "js-cookie"; // استيراد مكتبة الكوكيز
+import Cookies from "js-cookie";
 import BlogList from "../../../components/BlogList";
 import {Blog} from "@/types/types"
 import { collection, query, where, getDocs } from "firebase/firestore";
 import Link from "next/link";
-
+import useFetchBlogs from "@/hook/useFetchBlogs";
 
 interface UserData {
   username?: string;
@@ -17,66 +17,42 @@ interface UserData {
 }
 
 const UserProfile: React.FC = () => {
-  const { username } = useParams();
+  const params = useParams();
+  const username = params.username as string;
   const [user, setUser] = useState<UserData | null>(null);
-  const [blogs, setBlogs] = useState<Blog[]>([]);
-console.log(blogs, 'blogs')
   const [isOwner, setIsOwner] = useState<boolean>(false);
-  console.log("isOwner", isOwner);
   const cookieUser = Cookies.get("user"); 
   const parsedUser = cookieUser ? JSON.parse(cookieUser) : null;
-  console.log(Cookies.get("user"));
-
+  const { blogs } = useFetchBlogs({ authorName: username });
   useEffect(() => {
-    if (username && parsedUser) {
-      const fetchUserData = async () => {
+    if (!username || !parsedUser) return;
+  
+    const fetchUserData = async () => {
+      try {
         const q = query(
           collection(firestore, "users"),
           where("username", "==", username)
         );
         const querySnapshot = await getDocs(q);
   
-        if (!querySnapshot.empty) {
-          const userData = querySnapshot.docs[0].data();
-          setUser(userData);
-  
-          // تحقق إذا كان المستخدم هو نفسه صاحب الحساب
-          if (userData.username === parsedUser.displayName) {
-            setIsOwner(true);
-          } else {
-            setIsOwner(false);
-          }
-  
-          // استعلام لجلب المدونات بناءً على userId
-          const blogsQuery = query(
-            collection(firestore, "blogs"),
-            where("authorId", "==", querySnapshot.docs[0].id) // استخدم معرّف المستخدم
-          );
-  
-          const blogsSnapshot = await getDocs(blogsQuery);
-          const blogsData: Blog[] = blogsSnapshot.docs.map((doc) => {
-            const data = doc.data();
-            const createdAtRaw = data.createdAt;
-     
-          
-            return {
-              id: doc.id,
-              title: data.title || "No Title",  // تأكد من وجود هذه الحقول
-              content: data.content || "No Content", // تأكد من وجود هذه الحقول
-              image:data.image || "no image",
-              createdAt: createdAtRaw?.toDate?.()||new Date(),
-            };
-          });
-  
-          setBlogs(blogsData); // تعيين المدونات
-        } else {
+        if (querySnapshot.empty) {
           console.log("No user found with that username!");
+          return;
         }
-      };
   
-      fetchUserData();
-    }
-  }, [username]);
+        const userData = querySnapshot.docs[0].data();
+        setUser(userData);
+  
+        const isCurrentUser = userData.username === parsedUser.displayName;
+        setIsOwner(isCurrentUser);
+        
+      } catch (error) {
+        console.error("Error fetching user data:", error);
+      }
+    };
+  
+    fetchUserData();
+  }, [username, parsedUser]);
   
   
 
@@ -85,7 +61,7 @@ console.log(blogs, 'blogs')
     try {
       const blogRef = doc(firestore, "blogs", blogId);
       await deleteDoc(blogRef);
-      setBlogs((prevBlogs) => prevBlogs.filter((blog) => blog.id !== blogId));
+      window.location.reload();
       console.log("Blog deleted successfully!");
     } catch (error) {
       console.error("Error deleting blog:", error);

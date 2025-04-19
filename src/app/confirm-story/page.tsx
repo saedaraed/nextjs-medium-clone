@@ -20,8 +20,7 @@ const ConfirmPost: React.FC = () => {
   const [submitting, setSubmitting] = useState<boolean>(false);
   const [showToast, setShowToast] = useState<boolean>(false);
 
-
-  
+ 
   const handleAddTag = () => {
     if (tagInput.trim() !== "" && !tags.includes(tagInput.trim())) {
       setTags([...tags, tagInput.trim()]);
@@ -39,9 +38,11 @@ const ConfirmPost: React.FC = () => {
       handleAddTag();
     }
   };
-  const customId = `${user?.uid}-${Date.now()}`; 
   const handleConfirmPublish = async () => {
+ 
     setSubmitting(true);
+    const customId = `${user?.uid}-${Date.now()}`;
+
     try {
       await setDoc(doc(firestore, "blogs", customId), {
         id: customId,
@@ -79,7 +80,7 @@ const ConfirmPost: React.FC = () => {
   return (
     <div className="container w-[60%] mx-auto pt-40">
       <div className="flex justify-end mb-4">
-        <button onClick={handleCancel} className="">
+        <button type="button" onClick={handleCancel} className="">
           <svg
             className="w-3 h-3"
             aria-hidden="true"
@@ -89,9 +90,9 @@ const ConfirmPost: React.FC = () => {
           >
             <path
               stroke="currentColor"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="2"
               d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"
             />
           </svg>
@@ -145,7 +146,7 @@ const ConfirmPost: React.FC = () => {
     onChange={(e) => setCategory(e.target.value)}
     className="w-full border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
   >
-        <option selected className=" text-gray-700">  Select a category</option>
+        <option className=" text-gray-700">  Select a category</option>
 
     <option value="technology">Technology</option>
     <option value="lifestyle">Lifestyle</option>
@@ -192,6 +193,7 @@ const ConfirmPost: React.FC = () => {
                       {tag}
                     </span>
                     <button
+                    type="button"
                       onClick={() => handleRemoveTag(tag)}
                       className="ml-2 text-gray-500 hover:text-gray-700 cursor-pointer"
                     >
@@ -217,6 +219,7 @@ const ConfirmPost: React.FC = () => {
             </div>
             <div>
               <button
+              type="button"
                 onClick={handleConfirmPublish}
                 disabled={submitting}
                 className="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700"

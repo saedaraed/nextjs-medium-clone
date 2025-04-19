@@ -6,7 +6,6 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as Yup from "yup";
 import { useRouter } from "next/navigation";
 
-// Validation Schema with Yup
 const schema = Yup.object({
   username: Yup.string().required("Username is required"),
   email: Yup.string()
@@ -38,14 +37,13 @@ const RegisterPage: React.FC = () => {
   const router = useRouter();
   useEffect(() => {
     if (user) {
-      router.replace("/"); // أو إلى الصفحة التي تريد توجيه المستخدم إليها
+      router.replace("/");
     }
   }, [user, router]);
   const onSubmit = async (data: FormData) => {
     try {
       await registerUser(data.username, data.email, data.password , data.bio);
-      console.log("User registered successfully:", data); // إضافة هذه السطر للطباعة
-
+      console.log("User registered successfully:", data);
       router.replace("/");
       
     } catch (err) {

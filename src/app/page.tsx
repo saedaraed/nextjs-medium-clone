@@ -14,12 +14,19 @@ import UnauthHero from "@/components/UnauthHero";
 import { Blog } from "@/types/types";
 
 const Home: React.FC = () => {
-  const { user } = useAuth();
-  const [activeTab, setActiveTab] = useState<string>("Featured");
+  const { user } = useAuth();  //🔸 تجيب معلومات المستخدم إذا كان مسجّل دخولًا أو لا.
+
+
+  const [activeTab, setActiveTab] = useState<string>("Featured"); //🔸 تتحكم في التبويب الحالي لعرض المقالات حسب التصنيف (Featured, Food, Tech…)
+
+
 
   const { blogs } = useFetchBlogs({ category: activeTab === "Featured" ? undefined : activeTab.toLowerCase() });
+//🔶 جلب المقالات بناءً على التصنيف:
 
   const isOwner = false;
+//🔸 يتأكد أن كل مقال يحتوي على category و createdAt صحيحة (تحويل Timestamp إلى Date).
+
 
   const blogsWithCategory: Blog[] = blogs.map((blog) => {
     const createdAt =
@@ -49,9 +56,13 @@ const Home: React.FC = () => {
     blog1: true,
     blog2: false,
     blog3: true,
-  });
+  }); //🔸 تحاكي حالة حفظ المقالات لكل مستخدم (سنربطها بالـ context لاحقاً لتكون ديناميكية).
+
+
 
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
+//🔸 تتحكم في منو كل مقال (مثل: تعديل/حذف/حفظ).
+
 
   const toggleDropdown = (blogId: string) => {
     if (openDropdown === blogId) {

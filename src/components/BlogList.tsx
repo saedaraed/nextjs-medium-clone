@@ -3,13 +3,13 @@ import BlogCard from "./BlogCard";
 import {Blog} from "@/types/types"
 
 interface BlogListProps {
-  blogs: Blog[];
-  onDelete: (blogId: string) => void;
-  saved: Record<string, boolean>;
-  toggleSaved: (blogId: string) => void;
-  openDropdown: string | null;
-  toggleDropdown: (blogId: string) => void;
-  isLoggedIn: boolean; // إضافة حالة المستخدم
+  blogs: Blog[];  // مصفوفة من المقالات التي سيتم عرضها
+  onDelete: (blogId: string) => void;  // وظيفة لحذف المقال
+  saved: Record<string, boolean>;  // حالة حفظ المقالات (مقال تم حفظه أم لا)
+  toggleSaved: (blogId: string) => void;  // وظيفة لتغيير حالة الحفظ
+  openDropdown: string | null;  // تتبع المقال الذي تم فتح القائمة المنسدلة له
+  toggleDropdown: (blogId: string) => void;  // وظيفة لتبديل القائمة المنسدلة
+  isLoggedIn: boolean;  // حالة تسجيل الدخول للمستخدم
 }
 
 const BlogList: React.FC<BlogListProps> = ({
