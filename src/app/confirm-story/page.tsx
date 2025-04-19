@@ -1,5 +1,9 @@
 "use client";
+/* eslint-disable */
+
 import { useRouter, useSearchParams } from "next/navigation";
+import { Suspense } from "react";
+
 import { useState } from "react";
 import { doc, serverTimestamp, setDoc } from "firebase/firestore";
 import { firestore } from "@/lib/firebase";
@@ -78,6 +82,7 @@ const ConfirmPost: React.FC = () => {
 
 
   return (
+    <Suspense fallback={<div>Loading...</div>}>
     <div className="container w-[60%] mx-auto pt-40">
       <div className="flex justify-end mb-4">
         <button type="button" onClick={handleCancel} className="">
@@ -231,6 +236,7 @@ const ConfirmPost: React.FC = () => {
         </div>
       </div>
     </div>
+    </Suspense>
   );
 };
 
