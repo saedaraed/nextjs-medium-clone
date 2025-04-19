@@ -5,7 +5,6 @@ import { useEffect, useState } from "react";
 import { firestore } from "../../../lib/firebase";
 import Cookies from "js-cookie";
 import BlogList from "../../../components/BlogList";
-import {Blog} from "@/types/types"
 import { collection, query, where, getDocs } from "firebase/firestore";
 import Link from "next/link";
 import useFetchBlogs from "@/hook/useFetchBlogs";
