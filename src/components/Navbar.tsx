@@ -8,7 +8,7 @@ import SearchBar from "./SearchBar";
 const Navbar: React.FC = () => {
   const { user } = useAuth();
   const [isScrolled, setIsScrolled] = useState(false);
-
+ 
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 10);
