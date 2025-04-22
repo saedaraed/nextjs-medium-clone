@@ -10,9 +10,9 @@ interface ButtonProps {
     const getButtonStyle = () => {
       switch (variant) {
         case "secondary":
-          return "bg-[#3B0014] text-white";
+          return "bg-[#2b5773] text-white";
           case "outlined":
-            return " w-full bg-transparent text-black border border-1 border-[#3B0014] hover:bg-[#3B0014] hover:text-white";
+            return " w-full bg-transparent text-[#24242b] border border-1 border-[#2b5773] hover:bg-[#2b5773] hover:text-white";
         default:
           return " text-white";
       }

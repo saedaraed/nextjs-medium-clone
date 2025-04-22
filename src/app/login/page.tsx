@@ -55,8 +55,8 @@ const LoginPage: React.FC = () => {
       {/* <div className="absolute inset-0 bg-[rgb(240, 246, 252)] opacity-95 backdrop-blur-lg"></div> */}
 
       <div className="container w-full md:w-1/2 mx-auto relative z-10">
-        <h2 className="text-center text-[30px] text-[#3B0014] font-bold">Welcome back!</h2>
-        <p className="text-center text-black/60 text-[20px]">
+        <h2 className="text-center text-[30px] text-[#24242b] font-bold">Welcome back!</h2>
+        <p className="text-center text-[#24242b]/60 text-[20px]">
           Welcome back Please enter your details
         </p>
         <form onSubmit={handleSubmit(onSubmit)}>
@@ -64,7 +64,7 @@ const LoginPage: React.FC = () => {
             <div className="">
               <label
                 htmlFor="email"
-                className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                className="block mb-2 text-sm font-medium text-[#24242b]"
               >
                 Email address
               </label>
@@ -84,7 +84,7 @@ const LoginPage: React.FC = () => {
             <div>
               <label
                 htmlFor="password"
-                className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                className="block mb-2 text-sm font-medium text-[#24242b]"
               >
                 Password
               </label>
@@ -126,7 +126,7 @@ const LoginPage: React.FC = () => {
         <div>
           <p className="text-center text-[17px] mt-5">
           Don&apos;t have an account?
-          <Link href="/register" className="text-[#3B0014] font-bold">
+          <Link href="/register" className="text-[#24242b] font-bold">
               Create one
             </Link>
           </p>
