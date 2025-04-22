@@ -12,8 +12,8 @@ interface CategoryTabsProps {
             onClick={() => onChange(category)}
             className={`px-4 py-2 rounded-full cursor-pointer transition-colors whitespace-nowrap !rounded-button ${
               activeTab === category
-                ? "bg-[#bd88c9] text-white"
-                : "bg-white text-gray-700 hover:bg-gray-100"
+                ? "bg-[#3b0014] text-white"
+                : "bg-white hover:text-white hover:bg-[#3b0014]"
             }`}
           >
             {category}

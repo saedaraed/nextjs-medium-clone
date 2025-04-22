@@ -44,18 +44,18 @@ const LoginPage: React.FC = () => {
   return (
     <div
       className="relative min-h-screen  pt-40"
-      style={{
-        backgroundImage:
-          'url("https://plus.unsplash.com/premium_photo-1667761634654-7fcf176434b8?q=80&w=2037&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D")', // Update to a direct image URL
-        backgroundSize: "cover",
-        backgroundPosition: "center",
-        backgroundAttachment: "fixed",
-      }}
+      // style={{
+      //   backgroundImage:
+      //     'url("https://plus.unsplash.com/premium_photo-1667761634654-7fcf176434b8?q=80&w=2037&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D")', // Update to a direct image URL
+      //   backgroundSize: "cover",
+      //   backgroundPosition: "center",
+      //   backgroundAttachment: "fixed",
+      // }}
     >
-      <div className="absolute inset-0 bg-[rgb(240, 246, 252)] opacity-95 backdrop-blur-lg"></div>
+      {/* <div className="absolute inset-0 bg-[rgb(240, 246, 252)] opacity-95 backdrop-blur-lg"></div> */}
 
       <div className="container w-full md:w-1/2 mx-auto relative z-10">
-        <h2 className="text-center text-[30px] font-bold">Welcome back!</h2>
+        <h2 className="text-center text-[30px] text-[#3B0014] font-bold">Welcome back!</h2>
         <p className="text-center text-black/60 text-[20px]">
           Welcome back Please enter your details
         </p>
@@ -72,7 +72,7 @@ const LoginPage: React.FC = () => {
                 type="email"
                 {...register("email")}
                 placeholder="Enter your email"
-                className="bg-gray-50 outline-none border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-[#bd88c9] focus:border-[#bd88c9]  block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                className="bg-gray-50 outline-none border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-[#bd88c9] focus:border-[#3B0014]  block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
               />
               {errors.email && (
                 <p className=" text-sm text-red-600 dark:text-red-500">
@@ -92,7 +92,7 @@ const LoginPage: React.FC = () => {
                 type="password"
                 {...register("password")}
                 placeholder="Enter your password"
-                className="bg-gray-50 outline-none border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-[#bd88c9] focus:border-[#bd88c9]  block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                className="bg-gray-50 outline-none border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-[#bd88c9] focus:border-[#3B0014]  block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 required
               />
               {errors.password && (
@@ -125,8 +125,8 @@ const LoginPage: React.FC = () => {
         </div>
         <div>
           <p className="text-center text-[17px] mt-5">
-            No account?{" "}
-            <Link href="/register" className="text-[#bd88c9] font-bold">
+          Don&apos;t have an account?
+          <Link href="/register" className="text-[#3B0014] font-bold">
               Create one
             </Link>
           </p>

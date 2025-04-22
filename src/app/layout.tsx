@@ -4,6 +4,7 @@ import { AuthProvider } from "../context/AuthContext";
 import "./globals.css";
 import Navbar from "@/components/Navbar"; 
 import { SavedBlogsProvider } from "@/context/SavedBlogsContext";
+import Footer from "@/components/Footer";
 const inter = Inter({
   variable: "--font-inter",
   subsets: ["latin"],
@@ -40,6 +41,7 @@ export default function RootLayout({
          <Navbar />
     
          {children}
+         <Footer/>
          </SavedBlogsProvider>
          </AuthProvider>
       </body>

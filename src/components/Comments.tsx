@@ -4,6 +4,7 @@ import { addDoc, collection, onSnapshot, serverTimestamp } from "firebase/firest
 import { firestore } from "@/lib/firebase";
 import { useAuth } from "@/context/AuthContext";
 import { Timestamp } from "firebase/firestore";
+import Button from "./Button";
 
 interface Comment {
   id: string;
@@ -59,12 +60,8 @@ console.log('comment' , newComment)
             placeholder="Write a comment..."
             className="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 min-h-[100px] text-sm mb-4"
           />
-          <button
-            type="submit"
-            className="bg-blue-600 text-white px-6 py-2 rounded-button hover:bg-blue-700 transition duration-200"
-          >
-            Post Comment
-          </button>
+    
+          <Button text="Post Comment" type="submit" variant="secondary" />
         </form>
       )}
 

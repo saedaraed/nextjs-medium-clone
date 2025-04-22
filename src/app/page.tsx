@@ -85,7 +85,7 @@ const Home: React.FC = () => {
           <div className={`bg-white  rounded-lg p-4 mb-6`}>
             <h2 className="text-xl font-semibold">
               Welcome,{" "}
-              <span className={`text-[#bd88c9]`}>{user?.displayName}</span>!
+              <span className={`text-[#687451]`}>{user?.displayName}</span>!
             </h2>
             <p className={`text-gray-600 mt-1`}>
               Discover new ideas and perspectives on topics that matter to you.

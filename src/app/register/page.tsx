@@ -5,6 +5,8 @@ import { useAuth } from "../../context/AuthContext";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as Yup from "yup";
 import { useRouter } from "next/navigation";
+import Button from "@/components/Button";
+import Link from "next/link";
 
 const schema = Yup.object({
   username: Yup.string().required("Username is required"),
@@ -54,17 +56,17 @@ const RegisterPage: React.FC = () => {
   return (
     <div
       className="relative min-h-screen  pt-20"
-      style={{
-        backgroundImage:
-          'url("https://plus.unsplash.com/premium_photo-1667761634654-7fcf176434b8?q=80&w=2037&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D")', // Update to a direct image URL
-        backgroundSize: "cover",
-        backgroundPosition: "center",
-        backgroundAttachment: "fixed",
-      }}
+      // style={{
+      //   backgroundImage:
+      //     'url("https://plus.unsplash.com/premium_photo-1667761634654-7fcf176434b8?q=80&w=2037&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D")', // Update to a direct image URL
+      //   backgroundSize: "cover",
+      //   backgroundPosition: "center",
+      //   backgroundAttachment: "fixed",
+      // }}
     >
-      <div className="absolute inset-0 bg-[rgb(240, 246, 252)] opacity-95 backdrop-blur-lg"></div>
+      {/* <div className="absolute inset-0 bg-[rgb(240, 246, 252)] opacity-95 backdrop-blur-lg"></div> */}
       <div className="container w-full md:w-1/2 mx-auto relative z-10">
-        <h2 className="text-center text-[30px] font-bold">Join FreePen</h2>
+        <h2 className="text-center text-[30px] text-[#3B0014] font-bold">Join FreePen</h2>
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className="grid gap-6 mb-6 md:grid-cols-1">
           <div>
@@ -115,13 +117,13 @@ const RegisterPage: React.FC = () => {
               {errors.password && <p>{errors.password.message}</p>}
             </div>
 
-            <button
+        
+            <Button
+              text="Sign Up"
               type="submit"
+              variant="secondary"
               disabled={loading}
-              className="text-black bg-[#bd88c9]  focus:ring-4 focus:outline-none  font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-            >
-              {loading ? "Registering..." : "Register"}
-            </button>
+            />
             {error && (
               <p className="mt-2 text-sm text-red-600 dark:text-red-500">
                 {error}
@@ -129,7 +131,14 @@ const RegisterPage: React.FC = () => {
             )}
           </div>
         </form>
-        <div></div>
+        <div>
+          <p className="text-center text-[17px] mt-5">
+          Already have an account? 
+            <Link href="/login" className="text-[#3B0014] font-bold">
+            Sign in
+            </Link>
+          </p>
+        </div>
       </div>
     </div>
   );

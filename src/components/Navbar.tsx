@@ -29,7 +29,7 @@ const Navbar: React.FC = () => {
         <div className="container mx-auto px-4 pt-4 pb-2">
           <div className="flex justify-between items-center mb-4">
             <div className="flex items-center gap-4">
-              <h1 className="text-2xl font-semibold">Free Pen</h1>
+            <h1 className="text-2xl font-semibold text-[#3b0014]">Free Pen</h1>
               {user && <Link href="/">Home</Link>}
               {user && <SearchBar />}
               
@@ -39,7 +39,7 @@ const Navbar: React.FC = () => {
                 <>
                   <Link
                     href="/new-story"
-                    className="flex items-center gap-2 border-b border-black py-1 w-fit"
+                    className="flex items-center gap-2 border-b border-[#3B0014] py-1 w-fit"
                   >
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
@@ -55,25 +55,25 @@ const Navbar: React.FC = () => {
                         d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L8.25 18.75H4.5v-3.75L16.862 4.487z"
                       />
                     </svg>{" "}
-                    <p>create story</p>
+                    <p className="text-[#3B0014]">create story</p>
                   </Link>
 
                   <Avatar />
                 </>
               ) : (
                 <>
-                  <Link
+                  {/* <Link
                     href="/login"
                     className="text-white bg-[#bd88c9] py-2 px-4 rounded-md inline-block"
                   >
                     Log In
-                  </Link>
+                  </Link> */}
                 </>
               )}
             </div>
           </div>
 
-          {!isScrolled && <hr />}
+          {!isScrolled &&  user &&<hr />}
         </div>
       </nav>
     </>
