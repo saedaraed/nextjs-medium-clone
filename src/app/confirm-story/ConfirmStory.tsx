@@ -15,6 +15,8 @@ const ConfirmStoryClient: React.FC = () => {
   const [tags, setTags] = useState<string[]>([]);
   const [tagInput, setTagInput] = useState<string>("");
   const [category, setCategory] = useState<string>("");
+  const [categoryError, setCategoryError] = useState<boolean>(false);
+
   const { user } = useAuth();
   const router = useRouter();
   const searchParams = useSearchParams();
@@ -53,6 +55,12 @@ const ConfirmStoryClient: React.FC = () => {
 
   // Handle publishing the post
   const handleConfirmPublish = async () => {
+    if (!category || category === "Select a category") {
+      setCategoryError(true);
+      return;
+    }
+    setCategoryError(false);
+
     setSubmitting(true);
     const customId = `${user?.uid}-${Date.now()}`;
 
@@ -81,20 +89,17 @@ const ConfirmStoryClient: React.FC = () => {
     }
   };
 
-  // Handle cancel button
   const handleCancel = () => {
     router.push("/new-story");
   };
-
-  // Handle missing data
   if (!title || !content) {
     return <p>Error: Missing required data!</p>;
   }
 
   return (
-    <div className="container w-[60%] mx-auto py-40">
+    <div className="container w-[60%] mx-auto py-30">
       <div className="flex justify-end mb-4">
-        <button type="button" onClick={handleCancel} className="">
+        <button type="button" onClick={handleCancel} className="cursor-pointer">
           <svg
             className="w-3 h-3"
             aria-hidden="true"
@@ -160,9 +165,18 @@ const ConfirmStoryClient: React.FC = () => {
               <select
                 id="category"
                 value={category}
-                onChange={(e) => setCategory(e.target.value)}
-                className="w-full border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
-              >
+                onChange={(e) => {
+                  setCategory(e.target.value);
+                  if (e.target.value && e.target.value !== "Select a category") {
+                    setCategoryError(false); 
+                  }
+                }}
+                
+                className={`w-full rounded-md px-4 py-2 focus:outline-none focus:ring-2 border ${
+                  categoryError
+                    ? "border-red-500 focus:ring-red-500 focus:border-red-500"
+                    : "border-[#687451] focus:ring-indigo-500 focus:border-indigo-500"
+                }`}              >
                 <option className="text-gray-700">Select a category</option>
                 <option value="technology">Technology</option>
                 <option value="lifestyle">Lifestyle</option>
@@ -170,6 +184,9 @@ const ConfirmStoryClient: React.FC = () => {
                 <option value="food">Food</option>
                 <option value="entertainment">Entertainment</option>
               </select>
+              {categoryError && (
+  <p className="mt-1 text-sm text-red-600">Please select a category.</p>
+)}
             </div>
 
             <div className="mb-6">
@@ -188,7 +205,7 @@ const ConfirmStoryClient: React.FC = () => {
                   onChange={(e) => setTagInput(e.target.value)}
                   onKeyDown={handleKeyDown}
                   placeholder="Add a topic..."
-                  className="flex-grow border border-gray-300 rounded-l-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
+                  className="flex-grow border border-[#687451] rounded-l-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
                 />
                 <button
                   type="button"

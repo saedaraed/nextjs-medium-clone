@@ -1,5 +1,6 @@
 // import Link from "next/link";
 import { Blog } from "@/types/types";
+import Link from "next/link";
 
 interface BlogCardProps {
   blog: Blog;
@@ -8,7 +9,8 @@ interface BlogCardProps {
   toggleSaved: (blogId: string) => void;
   isDropdownOpen: boolean;
   toggleDropdown: (blogId: string) => void;
-  isLoggedIn: boolean;
+  isLoggedIn?: boolean;
+  isCompact?:boolean
 }
 
 const BlogCard: React.FC<BlogCardProps> = ({
@@ -19,20 +21,21 @@ const BlogCard: React.FC<BlogCardProps> = ({
   isDropdownOpen,
   toggleDropdown,
   isLoggedIn,
+  isCompact,
 }) => {
   console.log("authorname", blog.authorName);
 
   return (
     <div className=" bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow cursor-pointer ">
-      <div className="flex flex-col md:flex-row">
-        <div className="md:w-1/3  h-64 md:h-[200px] overflow-hidden">
+      <div className={`flex flex-col ${!isCompact ? "md:flex-row" : ""}`}>
+        <div className={`${!isCompact ? "md:w-1/3":""}  ${!isCompact ? "h-64" :" h-40 "} ${!isCompact ? "md:h-[200px]" :""}overflow-hidden`}>
           <img
             className="full-cover w-full h-full"
             src={blog.image}
             alt="image"
           />
         </div>
-        <div className="md:w-2/3 p-6 flex flex-col justify-between">
+        <div className={`${!isCompact ?"md:w-2/3" :""} p-6 flex flex-col justify-between`}>
           <div className="flex mb-3 items-center justify-between">
             <div className="flex items-center space-x-4 ">
               <span className="text-sm font-semibold px-3 py-1 rounded-full bg-[#e8e0bb] text-[#687451]">
@@ -75,7 +78,7 @@ const BlogCard: React.FC<BlogCardProps> = ({
                     </svg>
                   </button>
 
-                  {isLoggedIn && ( // إظهار الزر فقط إذا كان المستخدم مسجلاً
+                  {isLoggedIn && ( 
                     <div className="relative">
                       <button
                         onClick={(e) => {
@@ -121,19 +124,19 @@ const BlogCard: React.FC<BlogCardProps> = ({
               
             </div>
           </div>
-          <h3 className="text-xl font-bold hover:text-[#687451] transition-colors">
+          <h3 className="text-l font-bold hover:text-[#687451] transition-colors">
             {blog.title}
           </h3>
 
-          <p className="text-gray-600 mb-3">
+          <p className={`text-l text-gray-600 mb-3  ${!isCompact ? "block" : "hidden"} `}>
             {blog.content.length > 120
               ? `${blog.content.slice(0, 120)}...`
               : blog.content}
           </p>
 
-          {/* <Link href={`/blogs/${blog.id}`} className="block">
+          <Link href={`/blogs/${blog.id}`} className="block text-[#3b0014] font-bold">
             read more
-          </Link> */}
+          </Link>
         </div>
       </div>
     </div>

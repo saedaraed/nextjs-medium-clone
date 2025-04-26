@@ -66,7 +66,7 @@ const RegisterPage: React.FC = () => {
     >
       {/* <div className="absolute inset-0 bg-[rgb(240, 246, 252)] opacity-95 backdrop-blur-lg"></div> */}
       <div className="container w-full md:w-1/2 mx-auto relative z-10">
-        <h2 className="text-center text-[30px] text-[#3B0014] font-bold">Join FreePen</h2>
+        <h2 className="text-center text-[30px] text-[#3B0014] font-bold" style={{ fontFamily: "'Pacifico', cursive" }}>Join FreePen</h2>
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className="grid gap-6 mb-6 md:grid-cols-1">
           <div>

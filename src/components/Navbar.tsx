@@ -29,7 +29,7 @@ const Navbar: React.FC = () => {
         <div className="container mx-auto px-4 pt-4 pb-2">
           <div className="flex justify-between items-center mb-4">
             <div className="flex items-center gap-4">
-            <h1 className="text-2xl font-semibold text-[#3b0014]">Free Pen</h1>
+            <h1 className="text-2xl font-semibold text-[#3b0014]" style={{ fontFamily: "'Pacifico', cursive" }}>Free Pen</h1>
               {user && <Link href="/">Home</Link>}
               {user && <SearchBar />}
               

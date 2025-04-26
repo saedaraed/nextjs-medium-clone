@@ -1,9 +1,8 @@
 "use client";
 import BlogList from "@/components/BlogList";
 import { useAuth } from "@/context/AuthContext";
-import { firestore } from "@/lib/firebase";
-import { deleteDoc, doc, Timestamp } from "firebase/firestore";
-import React, {  useState } from "react";
+import { Timestamp } from "firebase/firestore";
+import React, {  useEffect, useState } from "react";
 import CategoryTabs from "@/components/CategoryTabs";
 import RecommendedTopics from "@/components/RecommendedTopics";
 import PopularPosts from "@/components/PopularPosts";
@@ -12,21 +11,22 @@ import Tags from "@/components/TagsSection";
 import NewsletterSubscribtion from "@/components/NewsLetterSubscribtions";
 import UnauthHero from "@/components/UnauthHero";
 import { Blog } from "@/types/types";
+import useBlogActions from "@/hook/useBlogAction";
 
 const Home: React.FC = () => {
-  const { user } = useAuth();  //🔸 تجيب معلومات المستخدم إذا كان مسجّل دخولًا أو لا.
-
-
-  const [activeTab, setActiveTab] = useState<string>("Featured"); //🔸 تتحكم في التبويب الحالي لعرض المقالات حسب التصنيف (Featured, Food, Tech…)
-
-
-
+  const[owner , setOwner]=useState<boolean>(false)
+  const { user } = useAuth(); 
+  const [activeTab, setActiveTab] = useState<string>("Featured");
   const { blogs } = useFetchBlogs({ category: activeTab === "Featured" ? undefined : activeTab.toLowerCase() });
-//🔶 جلب المقالات بناءً على التصنيف:
+  const { saved, openDropdown, toggleSaved, toggleDropdown, handleDeleteBlog } = useBlogActions();
 
-  const isOwner = false;
-//🔸 يتأكد أن كل مقال يحتوي على category و createdAt صحيحة (تحويل Timestamp إلى Date).
 
+  useEffect(() => {
+    if (user && blogs.length > 0) {
+      const isOwner = blogs.some(blog => blog.authorName === user.displayName);
+      setOwner(isOwner);
+    }
+  }, [user, blogs]); 
 
   const blogsWithCategory: Blog[] = blogs.map((blog) => {
     const createdAt =
@@ -42,53 +42,17 @@ const Home: React.FC = () => {
   });
 
 
-  const handleDeleteBlog = async (blogId: string) => {
-    try {
-      const blogRef = doc(firestore, "blogs", blogId);
-      await deleteDoc(blogRef);
-      // setBlogs((prevBlogs) => prevBlogs.filter((blog) => blog.id !== blogId));
-      console.log("Blog deleted successfully!");
-    } catch (error) {
-      console.error("Error deleting blog:", error);
-    }
-  };
-  const [saved, setSaved] = useState<Record<string, boolean>>({
-    blog1: true,
-    blog2: false,
-    blog3: true,
-  }); //🔸 تحاكي حالة حفظ المقالات لكل مستخدم (سنربطها بالـ context لاحقاً لتكون ديناميكية).
-
-
-
-  const [openDropdown, setOpenDropdown] = useState<string | null>(null);
-//🔸 تتحكم في منو كل مقال (مثل: تعديل/حذف/حفظ).
-
-
-  const toggleDropdown = (blogId: string) => {
-    if (openDropdown === blogId) {
-      setOpenDropdown(null);
-    } else {
-      setOpenDropdown(blogId);
-    }
-  };
-  const toggleSaved = (blogId: string) => {
-    setSaved((prev) => ({
-      ...prev,
-      [blogId]: !prev[blogId],
-    }));
-  };
-
   return (
     <div>
       {user ? (
-        <div className="container mx-auto px-4 py-40">
+        <div className="container mx-auto px-4 py-30">
           <div className={`bg-white  rounded-lg p-4 mb-6`}>
-            <h2 className="text-xl font-semibold">
+            <h2 className="text-xl font-semibold" style={{ fontFamily: "'Pacifico', cursive" }}>
               Welcome,{" "}
               <span className={`text-[#687451]`}>{user?.displayName}</span>!
             </h2>
             <p className={`text-gray-600 mt-1`}>
-              Discover new ideas and perspectives on topics that matter to you.
+            Write, share, and leave your impact. This is the space to inspire you.
             </p>
           </div>
           <div className="flex flex-col md:flex-row gap-8">
@@ -112,7 +76,7 @@ const Home: React.FC = () => {
                 toggleSaved={toggleSaved}
                 openDropdown={openDropdown}
                 toggleDropdown={toggleDropdown}
-                isLoggedIn={isOwner}
+                isLoggedIn={owner}
               />
             </div>
             <div className="w-full md:w-1/3">

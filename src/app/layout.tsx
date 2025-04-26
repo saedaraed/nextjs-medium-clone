@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Geist, Inter  } from "next/font/google";
+import { Geist, Inter , Dancing_Script  } from "next/font/google";
 import { AuthProvider } from "../context/AuthContext";
 import "./globals.css";
 import Navbar from "@/components/Navbar"; 
@@ -11,6 +11,10 @@ const inter = Inter({
 });
 const geistSans = Geist({
   variable: "--font-geist-sans",
+  subsets: ["latin"],
+});
+const dancingScript = Dancing_Script({
+  variable: "--font-dancing-script",
   subsets: ["latin"],
 });
 
@@ -33,7 +37,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${inter.variable} antialiased`}
+        className={`${geistSans.variable} ${inter.variable} ${dancingScript.variable}  antialiased`}
       >
         
          <AuthProvider>

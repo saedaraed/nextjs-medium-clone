@@ -9,7 +9,9 @@ interface BlogListProps {
   toggleSaved: (blogId: string) => void;  // وظيفة لتغيير حالة الحفظ
   openDropdown: string | null;  // تتبع المقال الذي تم فتح القائمة المنسدلة له
   toggleDropdown: (blogId: string) => void;  // وظيفة لتبديل القائمة المنسدلة
-  isLoggedIn: boolean;  // حالة تسجيل الدخول للمستخدم
+  isLoggedIn?: boolean;  // حالة تسجيل الدخول للمستخدم
+  isCompact?:boolean
+
 }
 
 const BlogList: React.FC<BlogListProps> = ({
@@ -20,6 +22,7 @@ const BlogList: React.FC<BlogListProps> = ({
   openDropdown,
   toggleDropdown,
   isLoggedIn,
+  isCompact
 }) => {
   
   return (
@@ -34,6 +37,7 @@ const BlogList: React.FC<BlogListProps> = ({
           isDropdownOpen={openDropdown === blog.id}
           toggleDropdown={toggleDropdown}
           isLoggedIn={isLoggedIn} 
+          isCompact={isCompact}
         />
       ))}
     </div>
