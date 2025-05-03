@@ -23,7 +23,7 @@ const Tags:React.FC=()=>{
 console.log("tags" , blogs)
     return(
         <div
-              className={`bg-white rounded-lg shadow-md p-5`}
+              className={`bg-white rounded-lg shadow-md p-5 custom-light-bg `}
             >
               <h3 className="text-lg font-bold mb-4">Explore Topics</h3>
               <div className="flex flex-wrap gap-2">

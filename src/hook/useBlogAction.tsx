@@ -1,9 +1,10 @@
 import { useState } from 'react';
 import { firestore } from '@/lib/firebase';
 import { deleteDoc, doc } from 'firebase/firestore';
+import { Blog } from '@/types/types';
 
 // Hook لإدارة التبديل والحذف
-const useBlogActions = (initialSavedState: Record<string, boolean> = {}) => {
+const useBlogActions = (initialSavedState: Record<string, boolean> = {}, setBlogs: React.Dispatch<React.SetStateAction<Blog[]>>) => {
   const [saved, setSaved] = useState<Record<string, boolean>>(initialSavedState);
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
 
@@ -12,7 +13,7 @@ const useBlogActions = (initialSavedState: Record<string, boolean> = {}) => {
     try {
       const blogRef = doc(firestore, "blogs", blogId);
       await deleteDoc(blogRef);
-    //   setBlogs((prevBlogs) => prevBlogs.filter((blog) => blog.id !== blogId));
+      setBlogs((prevBlogs) => prevBlogs.filter((blog) => blog.id !== blogId));
       console.log("Blog deleted successfully!");
     } catch (error) {
       console.error("Error deleting blog:", error);

@@ -1,10 +1,10 @@
 const Footer:React.FC =()=>{
     return(
-        <footer className="bg-[#f0e7c2] border-t border-[#687451]/20 py-12">
+        <footer className="bg-[#f0e7c2] border-t border-[#687451]/20 py-12 custom-dark-bg  ">
         <div className="container mx-auto px-8">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
             <div>
-              <h4 className="font-bold text-[#3b0014] mb-4">Product</h4>
+              <h4 className="font-bold text-[#3b0014] mb-4 custom-light">Product</h4>
               <ul className="space-y-2">
                 {["Features", "Pricing", "Solutions", "Enterprise"].map(
                   (item, index) => (
@@ -21,7 +21,7 @@ const Footer:React.FC =()=>{
               </ul>
             </div>
             <div>
-              <h4 className="font-bold text-[#3b0014] mb-4">Company</h4>
+              <h4 className="font-bold text-[#3b0014] mb-4 custom-light">Company</h4>
               <ul className="space-y-2">
                 {["About", "Careers", "Blog", "Contact"].map((item, index) => (
                   <li key={index}>
@@ -36,7 +36,7 @@ const Footer:React.FC =()=>{
               </ul>
             </div>
             <div>
-              <h4 className="font-bold text-[#3b0014] mb-4">Resources</h4>
+              <h4 className="font-bold text-[#3b0014] mb-4 custom-light">Resources</h4>
               <ul className="space-y-2">
                 {["Documentation", "Help Center", "API", "Status"].map(
                   (item, index) => (
@@ -53,7 +53,7 @@ const Footer:React.FC =()=>{
               </ul>
             </div>
             <div>
-              <h4 className="font-bold text-[#3b0014] mb-4">Legal</h4>
+              <h4 className="font-bold text-[#3b0014] mb-4 custom-light">Legal</h4>
               <ul className="space-y-2">
                 {["Privacy", "Terms", "Security", "Compliance"].map(
                   (item, index) => (

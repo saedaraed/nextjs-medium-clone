@@ -17,8 +17,8 @@ const Home: React.FC = () => {
   const[owner , setOwner]=useState<boolean>(false)
   const { user } = useAuth(); 
   const [activeTab, setActiveTab] = useState<string>("Featured");
-  const { blogs } = useFetchBlogs({ category: activeTab === "Featured" ? undefined : activeTab.toLowerCase() });
-  const { saved, openDropdown, toggleSaved, toggleDropdown, handleDeleteBlog } = useBlogActions();
+  const { blogs, setBlogs  } = useFetchBlogs({ category: activeTab === "Featured" ? undefined : activeTab.toLowerCase() });
+  const { saved, openDropdown, toggleSaved, toggleDropdown, handleDeleteBlog } = useBlogActions({}, setBlogs);
 
 
   useEffect(() => {
@@ -45,9 +45,9 @@ const Home: React.FC = () => {
   return (
     <div>
       {user ? (
-        <div className="container mx-auto px-4 py-30">
+        <div className="w-full md:w-[90%] mx-auto px-4 py-30  ">
           <div className={`bg-white  rounded-lg p-4 mb-6`}>
-            <h2 className="text-xl font-semibold" style={{ fontFamily: "'Pacifico', cursive" }}>
+            <h2 className="text-xl font-semibold custom-dark" style={{ fontFamily: "'Pacifico', cursive" }}>
               Welcome,{" "}
               <span className={`text-[#687451]`}>{user?.displayName}</span>!
             </h2>
@@ -56,7 +56,7 @@ const Home: React.FC = () => {
             </p>
           </div>
           <div className="flex flex-col md:flex-row gap-8">
-            <div className="w-full md:w-2/3">
+            <div className="w-full md:w-2/3 custom-dark">
               <CategoryTabs
                 categories={[
                   "Featured",

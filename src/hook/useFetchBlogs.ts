@@ -88,7 +88,7 @@ return {
     fetchBlogs();
   }, [authorName, category]);
 
-  return { blogs, loading, error };
+  return { blogs, loading, error , setBlogs };
 };
 
 export default useFetchBlogs;

@@ -49,7 +49,7 @@ const CommentSection = ({ blogId }: { blogId: string }) => {
 
   return (
     <div className="mt-12">
-      <h2 className="text-2xl font-bold text-black mb-6">Comments</h2>
+      <h2 className="text-2xl font-bold text-black mb-6 custom-light">Comments</h2>
 
       {user && (
         <form onSubmit={handleSubmit} className="mb-10">

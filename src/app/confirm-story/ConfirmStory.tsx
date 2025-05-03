@@ -151,14 +151,14 @@ const ConfirmStoryClient: React.FC = () => {
         </div>
 
         <div className="w-[50%] mx-auto">
-          <h2 className="flex gap-1 text-[#3b0014]">
+          <h2 className="flex gap-1 text-[#3b0014] custom-light">
             Publishing To: <p className="font-bold text-[#687451]">{user?.displayName}</p>
           </h2>
           <div className="p-6 border-b border-gray-200">
             <div className="mb-6">
               <label
                 htmlFor="category"
-                className="block text-sm font-medium text-gray-700 mb-2"
+                className="block text-sm font-medium text-gray-700 mb-2 custom-light"
               >
                 Select a category
               </label>
@@ -172,7 +172,7 @@ const ConfirmStoryClient: React.FC = () => {
                   }
                 }}
                 
-                className={`w-full rounded-md px-4 py-2 focus:outline-none focus:ring-2 border ${
+                className={`w-full rounded-md px-4 py-2 focus:outline-none focus:ring-2 border custom-dark ${
                   categoryError
                     ? "border-red-500 focus:ring-red-500 focus:border-red-500"
                     : "border-[#687451] focus:ring-indigo-500 focus:border-indigo-500"
@@ -192,7 +192,7 @@ const ConfirmStoryClient: React.FC = () => {
             <div className="mb-6">
               <label
                 htmlFor="tags"
-                className="block text-sm font-medium text-[#3b0014] mb-2"
+                className="block text-sm font-medium text-[#3b0014] mb-2 custom-light"
               >
                 Add or change topics (up to 5) so readers know what your story is about
               </label>
@@ -210,7 +210,7 @@ const ConfirmStoryClient: React.FC = () => {
                 <button
                   type="button"
                   onClick={handleAddTag}
-                  className="bg-[#3b0014] text-white px-4 py-2 rounded-r-md focus:outline-none cursor-pointer"
+                  className="bg-[#3b0014] text-white px-4 py-2 rounded-r-md focus:outline-none cursor-pointer custom-light-bg"
                 >
                   Add
                 </button>

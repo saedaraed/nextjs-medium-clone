@@ -11,15 +11,14 @@ const Stories: React.FC = () => {
   const params = useParams();
   const username = params.username as string;
   const [isOwner, setIsOwner] = useState<boolean | null>(null);
-  const [blogs, setBlogs] = useState<Blog[]>([]);
 
   const {
     blogs: fetchedBlogs,
     loading,
-    error,
+    error, setBlogs
   } = useFetchBlogs({ authorName: username });
   const { saved, openDropdown, toggleSaved, toggleDropdown, handleDeleteBlog } =
-    useBlogActions();
+    useBlogActions({}, setBlogs);
 
   const cookieUser = Cookies.get("user");
   const parsedUser = cookieUser ? JSON.parse(cookieUser) : null;
@@ -46,13 +45,13 @@ const Stories: React.FC = () => {
           <p className="text-center">Loading...</p>
         ) : error ? (
           <p className="text-center text-red-500">{error}</p>
-        ) : blogs.length === 0 ? (
+        ) : fetchedBlogs.length === 0 ? (
           <p className="text-center text-gray-500">No stories found.</p>
         ) : (
           <div className="space-y-6">
             {isOwner !== null && (
               <BlogList
-                blogs={blogs}
+                blogs={fetchedBlogs}
                 onDelete={handleDeleteBlog}
                 saved={saved}
                 toggleSaved={toggleSaved}

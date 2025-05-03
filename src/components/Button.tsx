@@ -23,7 +23,7 @@ interface ButtonProps {
         onClick={onClick}
         type={type}
         disabled={disabled}
-        className={`px-4 py-2 rounded ${getButtonStyle()} ${disabled ? "opacity-50 cursor-not-allowed" : ""}`}
+        className={`px-4 py-2 rounded custom-light-bg ${getButtonStyle()} ${disabled ? "opacity-50 cursor-not-allowed" : ""}`}
       >
         {text}
       </button>

@@ -26,7 +26,7 @@ const BlogCard: React.FC<BlogCardProps> = ({
   console.log("authorname", blog.authorName);
 
   return (
-    <div className=" bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow cursor-pointer ">
+    <div className=" bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow cursor-pointer custom-light-bg">
       <div className={`flex flex-col ${!isCompact ? "md:flex-row" : ""}`}>
         <div className={`${!isCompact ? "md:w-1/3":""}  ${!isCompact ? "h-64" :" h-40 "} ${!isCompact ? "md:h-[200px]" :""}overflow-hidden`}>
           <img
@@ -124,7 +124,7 @@ const BlogCard: React.FC<BlogCardProps> = ({
               
             </div>
           </div>
-          <h3 className="text-l font-bold hover:text-[#687451] transition-colors">
+          <h3 className="text-l font-bold hover:text-[#687451] transition-colors text-black ">
             {blog.title}
           </h3>
 

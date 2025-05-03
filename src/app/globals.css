@@ -30,3 +30,24 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+.dark body {
+  @apply bg-[#3b0014] text-gray-100;
+
+}
+/* .dark .text-black{
+  @apply text-black
+} */
+.dark .custom-light {
+  @apply text-white/70;
+}
+.dark .custom-dark {
+  @apply text-black;
+}
+.dark .custom-dark-bg {
+  @apply bg-[#3b0014] text-white;
+}
+
+.dark .custom-light-bg {
+  @apply bg-white/90 text-black;
+  
+}

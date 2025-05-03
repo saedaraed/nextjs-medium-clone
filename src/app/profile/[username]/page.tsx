@@ -18,8 +18,8 @@ const UserProfile: React.FC = () => {
   const [isOwner, setIsOwner] = useState<boolean>(false);
   const cookieUser = Cookies.get("user"); 
   const parsedUser = cookieUser ? JSON.parse(cookieUser) : null;
-  const { blogs } = useFetchBlogs({ authorName: username });
-  const { saved, openDropdown, toggleSaved, toggleDropdown, handleDeleteBlog } =useBlogActions();
+  const { blogs , setBlogs } = useFetchBlogs({ authorName: username });
+  const { saved, openDropdown, toggleSaved, toggleDropdown, handleDeleteBlog ,  } =useBlogActions({}, setBlogs);
   useEffect(() => {
     if (!username || !parsedUser) return;
   
@@ -64,10 +64,10 @@ const UserProfile: React.FC = () => {
             className="w-24 h-24 rounded-full object-cover border-4 border-white shadow-md"
           />
         </div>
-        <h1 className="text-2xl font-bold text-gray-800 mb-2">
+        <h1 className="text-2xl font-bold text-gray-800 mb-2 custom-light">
           {user?.username}
         </h1>
-        <p className="text-gray-600 text-center max-w-md mb-4">{user?.bio}</p>
+        <p className="text-gray-600 text-center max-w-md mb-4 custom-light">{user?.bio}</p>
         <div className="flex items-center mb-6">
           <div className="flex items-center mr-6">
             <i className="fas fa-user-friends text-gray-500 mr-2"></i>
@@ -89,14 +89,14 @@ const UserProfile: React.FC = () => {
       </div>
       {isOwner ? (
         <div className="flex justify-between items-center mb-8">
-          <h2 className="text-xl font-bold text-gray-800">My Blogs</h2>
-          <Link href="/new-story" className="bg-[#3B0014] text-white px-6 py-2.5 rounded-button cursor-pointer">
+          <h2 className="text-xl font-bold text-gray-800 custom-light">My Blogs</h2>
+          <Link href="/new-story" className="bg-[#3B0014] text-white px-6 py-2.5 rounded-button cursor-pointer custom-light-bg ">
             Create Story
           </Link>
         </div>
       ) : (
         <div className="flex justify-between items-center mb-8">
-          <h2 className="text-xl font-bold text-gray-800">Blogs</h2>
+          <h2 className="text-xl font-bold text-gray-800 custom-light">Blogs</h2>
         </div>
       )}
 

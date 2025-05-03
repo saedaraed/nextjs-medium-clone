@@ -41,9 +41,9 @@ const PopularPosts: React.FC = () => {
 
   return (
     <div
-    className={`bg-white rounded-lg shadow-md p-5 mb-6`}
+    className={`bg-white rounded-lg shadow-md p-5 mb-6 custom-light-bg `}
   >
-    <h3 className="text-lg font-bold mb-4">Popular Posts</h3>
+    <h3 className="text-lg font-bold mb-4 custom-dark">Popular Posts</h3>
     <div className="space-y-4">
       {popularPosts.map((post) => (
         <div key={post.id} className="flex space-x-3 cursor-pointer">

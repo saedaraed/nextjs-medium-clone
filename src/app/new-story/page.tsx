@@ -33,7 +33,7 @@ const CreatePost: React.FC = () => {
 
 
   return (
-    <div className="container w-[60%] mx-auto py-30 ">
+    <div className="container w-[90%] md:w-[60%] mx-auto py-30 ">
       <h1 className="text-[30px] text-[#3b0014] font-bold">Create new blog</h1>
       <form action="" onSubmit={handleSubmit}>
         <div className="p-6 border-b border-[#687451]">
@@ -65,10 +65,10 @@ const CreatePost: React.FC = () => {
         <div>
           <button
             type="submit"
-            className={`text-white bg-[#3b0014] ${
+            className={`text-white bg-[#3b0014] mt-4 ${
               !title || !content
-                ? "bg-[#3b00147f] cursor-not-allowed"
-                : "bg-[#3b0014] "
+                ? "bg-[#3b00147f]  cursor-not-allowed"
+                : "bg-[#3b0014] custom-light-bg custom-dark "
             } focus:ring-4 focus:outline-none  font-medium rounded-lg text-sm w-full px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800`}
           >            Publish
           </button>
