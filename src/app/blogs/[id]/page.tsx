@@ -16,7 +16,7 @@ const StoryDetails: React.FC = () => {
   const [blog, setBlog] = useState<Blog | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
 
-  const { blogs , setBlogs } = useFetchBlogs({ category: blog?.category });
+  const { blogs } = useFetchBlogs({ category: blog?.category });
   useEffect(() => {
     if (id) {
       const fetchBlog = async () => {

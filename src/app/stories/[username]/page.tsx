@@ -4,7 +4,6 @@ import BlogList from "@/components/BlogList";
 import { useState, useEffect } from "react";
 import Cookies from "js-cookie";
 import useFetchBlogs from "@/hook/useFetchBlogs";
-import { Blog } from "@/types/types";
 import useBlogActions from "@/hook/useBlogAction";
 
 const Stories: React.FC = () => {
